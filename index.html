@@ -1,0 +1,841 @@
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes"><title>プログラミング</title><style>/* ==============================================
+           BASE STYLES - HTML・BODY・グローバル設定
+           ============================================== */
+        html {
+            height: 100%;
+            overflow-y: scroll;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f7f3f0 0%, #f0ebe6 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 400vh;
+            height: auto;
+            overflow-y: visible;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==============================================
+           HEADER STYLES - ヘッダー・ロゴ・タイトル
+           ============================================== */
+        .header {
+            text-align: center;
+            color: #5d4e37;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border-bottom: 3px solid rgba(212, 196, 176, 0.3);
+            box-shadow: 0 4px 15px rgba(93, 78, 55, 0.08);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            height: 100%;
+            min-height: 144px;
+        }
+
+        .header-logo {
+            height: calc(100% - 20px);
+            max-height: 144px;
+            width: auto;
+            object-fit: contain;
+            transform: scale(1.2);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(93, 78, 55, 0.1);
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.8;
+            color: #6b5843;
+        }
+
+        /* ==============================================
+           INTRODUCTION SECTION - 紹介セクション
+           ============================================== */
+        .introduction-container {
+            max-width: 1200px;
+            margin: 30px auto 40px auto;
+            padding: 60px 20px;
+            min-height: 600px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(93, 78, 55, 0.15);
+            border: 3px solid rgba(212, 196, 176, 0.8);
+            position: relative;
+        }
+
+        .introduction-container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, rgba(212, 196, 176, 0.3), rgba(199, 178, 153, 0.3));
+            border-radius: 27px;
+            z-index: -1;
+        }
+
+        .introduction-container::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .intro-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .intro-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.2em;
+            color: #5d4e37;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .intro-text > p {
+            font-size: 1.1em;
+            color: #6b5843;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Feature Items */
+        .features {
+            display: grid;
+            gap: 25px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 196, 176, 0.3);
+        }
+
+        .feature-item h3 {
+            margin: 0 0 8px 0;
+            color: #5d4e37;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            margin: 0;
+            color: #6b5843;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        /* Images */
+        .intro-image {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-grid {
+            display: flex;
+            gap: 60px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .intro-main-image {
+            width: 100%;
+            max-width: 455px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(93, 78, 55, 0.15);
+            object-fit: cover;
+            border: 3px solid rgba(232, 220, 198, 0.6);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(232, 220, 198, 0.05));
+            padding: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .intro-main-image:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(93, 78, 55, 0.2);
+            border-color: rgba(199, 178, 153, 0.8);
+        }
+
+        .image-fallback {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, #e8dcc6, #d4c4b0);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 2px dashed rgba(93, 78, 55, 0.3);
+        }
+
+        .placeholder-content {
+            text-align: center;
+            color: #9d8a6f;
+        }
+
+        .placeholder-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .placeholder-content p {
+            margin: 0 0 8px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #7a6b56;
+        }
+
+        .placeholder-content small {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* Intro Buttons */
+        .intro-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 60px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .intro-button {
+            flex: 1;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: inherit;
+            box-shadow: 0 4px 15px rgba(93, 78, 55, 0.15);
+            min-width: 480px;
+        }
+
+        .sample-button {
+            background: linear-gradient(135deg, #f5f1eb, #e8dcc6);
+            color: #8b6914;
+            border: 2px solid #c7b299;
+        }
+
+        .sample-button:hover {
+            background: linear-gradient(135deg, #e8dcc6, #d4c4b0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 105, 20, 0.2);
+            border-color: #b3996b;
+        }
+
+        .guide-button {
+            background: linear-gradient(135deg, #f0ebe6, #e0d5c7);
+            color: #6b5843;
+            border: 2px solid #b8a082;
+        }
+
+        .guide-button:hover {
+            background: linear-gradient(135deg, #e0d5c7, #d0c0a3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 88, 67, 0.2);
+            border-color: #9d8a6f;
+        }
+
+        .button-icon {
+            font-size: 1.2em;
+        }
+
+        /* ==============================================
+           MODAL STYLES - 画像モーダル
+           ============================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+
+        /* ==============================================
+           CHAPTERS SECTION - チャプターセクション
+           ============================================== */
+        .chapters-title-section {
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+
+        .chapters-title {
+            font-size: 3em;
+            font-weight: 700;
+            color: #5d4e37;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(93, 78, 55, 0.1);
+            letter-spacing: 3px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 20px 80px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px 30px 0 0;
+            margin-top: 20px;
+            position: relative;
+            box-shadow: inset 0 4px 15px rgba(93, 78, 55, 0.05);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .roadmap-container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+        }
+
+        .chapters-roadmap {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            padding: 60px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        /* Chapter Rows */
+        .chapter-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            gap: 0;
+        }
+
+        /* ==============================================
+           CHAPTER ITEMS - チャプターカード
+           ============================================== */
+        .chapter-item {
+            background: linear-gradient(135deg, #fff, #f9f7f4);
+            border-radius: 25px;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            width: 1160px;
+            max-width: calc(100vw - 160px);
+            height: 230px;
+            border: 3px solid #e8dcc6;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+        }
+
+        .chapter-item:hover {
+            transform: translateY(-2px);
+            border-color: #d4c4b0;
+        }
+        
+        .chapter-content {
+            flex: 1;
+            padding: 50px 80px 50px 100px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chapter-subtitle {
+            font-size: 1.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chapter Subtitle Colors */
+        .chapter-row:nth-child(1) .chapter-subtitle { color: #1976d2; }
+        .chapter-row:nth-child(2) .chapter-subtitle { color: #388e3c; }
+        .chapter-row:nth-child(3) .chapter-subtitle { color: #f57c00; }
+        .chapter-row:nth-child(4) .chapter-subtitle { color: #7b1fa2; }
+        .chapter-row:nth-child(5) .chapter-subtitle { color: #d32f2f; }
+        .chapter-row:nth-child(6) .chapter-subtitle { color: #00695c; }
+        .chapter-row:nth-child(7) .chapter-subtitle { color: #f57f17; }
+        
+        .chapter-item h3 {
+            margin: 0 0 20px 0;
+            font-size: 2.2em;
+            font-weight: 600;
+            color: #5d4e37;
+            line-height: 1.3;
+        }
+        
+        .chapter-item p {
+            margin: 0;
+            color: #6b5843;
+            font-size: 1.4em;
+            line-height: 1.5;
+        }
+
+        .chapter-image {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #e8dcc6, #d4c4b0);
+            margin: 25px 40px 25px 0px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9d8a6f;
+            font-size: 1.2em;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .chapter-number {
+            display: none;
+        }
+
+        .chapter-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #5d4e37;
+            margin: 25px 0 15px 0;
+            line-height: 1.3;
+        }
+
+        .chapter-description {
+            color: #6b5843;
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* ==============================================
+           PDF BUTTONS - チャプター説明ボタン
+           ============================================== */
+        .pdf-button {
+            position: relative;
+            background: linear-gradient(135deg, #e8dcc6, #d4c4b0);
+            color: #6b5843;
+            text-decoration: none;
+            padding: 0;
+            border-radius: 25px;
+            font-size: 1.0em;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(93, 78, 55, 0.15);
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 200px;
+            width: 200px;
+            height: 230px;
+            justify-content: center;
+            margin: 0 0 0 20px;
+            border: 3px solid #c7b299;
+        }
+
+        .pdf-button:hover {
+            background: linear-gradient(135deg, #d4c4b0, #c7b299);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(93, 78, 55, 0.2);
+            border-color: #b3996b;
+        }
+
+        .pdf-button:active {
+            transform: translateY(0);
+        }
+
+        /* ==============================================
+           RESPONSIVE STYLES - レスポンシブ対応
+           ============================================== */
+
+        /* Tablet Styles (768px以下) */
+        @media (max-width: 768px) {
+            /* Header Responsive */
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-logo {
+                max-height: 96px;
+                height: calc(100% - 15px);
+                transform: scale(1.2);
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            /* Chapters Title */
+            .chapters-title {
+                font-size: 2.2em;
+                letter-spacing: 2px;
+            }
+
+            /* Introduction Container */
+            .introduction-container {
+                border-radius: 20px;
+                margin: 20px auto 30px auto;
+                border: 2px solid rgba(212, 196, 176, 0.8);
+            }
+
+            .introduction-container::before {
+                border-radius: 22px;
+            }
+
+            .container {
+                border-radius: 20px 20px 0 0;
+                margin-top: 10px;
+                padding: 40px 15px 60px 15px;
+            }
+
+            /* Intro Content */
+            .intro-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .intro-text h2 {
+                font-size: 1.8em;
+            }
+
+            .image-grid {
+                gap: 15px;
+            }
+
+            .intro-main-image {
+                max-width: 280px;
+            }
+
+            /* Chapters */
+            .chapters-roadmap {
+                gap: 40px;
+            }
+            
+            .chapter-item {
+                padding: 20px;
+                width: 280px;
+                height: 160px;
+            }
+            
+            .chapter-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4em;
+            }
+            
+            .chapter-title {
+                font-size: 1.1em;
+            }
+            
+            .chapter-description {
+                font-size: 0.85em;
+            }
+            
+            .chapter-row:not(:last-child)::after {
+                height: 40px;
+                bottom: -20px;
+            }
+            
+            .chapter-row:nth-child(even):not(:last-child)::before,
+            .chapter-row:nth-child(odd):not(:last-child)::before {
+                bottom: -35px;
+            }
+
+            .pdf-button {
+                position: relative;
+                margin: 10px 0 0 10px;
+                min-width: 100px;
+                width: 100px;
+                height: 160px;
+                font-size: 0.8em;
+                padding: 0;
+            }
+        }
+
+        /* Mobile Styles (480px以下) */
+        @media (max-width: 480px) {
+            /* Header Mobile */
+            .header-logo {
+                max-height: 72px;
+                height: calc(100% - 10px);
+                transform: scale(1.2);
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .chapters-title {
+                font-size: 1.8em;
+                letter-spacing: 1px;
+            }
+
+            /* Introduction Mobile */
+            .introduction-container {
+                border-radius: 15px;
+                margin: 15px auto 20px auto;
+                padding: 40px 15px;
+                border: 2px solid rgba(212, 196, 176, 0.8);
+            }
+
+            .introduction-container::before {
+                border-radius: 17px;
+            }
+
+            .container {
+                border-radius: 15px 15px 0 0;
+                margin-top: 5px;
+                padding: 30px 10px 50px 10px;
+            }
+
+            .intro-text h2 {
+                font-size: 1.5em;
+            }
+
+            .intro-text > p {
+                font-size: 1em;
+            }
+
+            .feature-item {
+                padding: 15px;
+            }
+
+            .image-grid {
+                gap: 10px;
+            }
+
+            .intro-main-image {
+                max-width: 220px;
+            }
+
+            /* Chapters Mobile */
+            .chapters-roadmap {
+                gap: 30px;
+            }
+            
+            .chapter-item {
+                width: 260px;
+                padding: 16px;
+                height: 140px;
+            }
+            
+            .chapter-row:nth-child(even) {
+                flex-direction: row;
+            }
+            
+            .chapter-row:not(:last-child)::after {
+                height: 30px;
+                bottom: -15px;
+            }
+
+            .pdf-button {
+                font-size: 0.75em;
+                padding: 0;
+                min-width: 80px;
+                width: 80px;
+                height: 140px;
+                margin: 10px 0 0 8px;
+            }
+        }</style><script defer="defer" src="bundle.js"></script></head><body><header class="header"><div class="header-content"><img src="logo.png" alt="ロゴ" class="header-logo" onerror="this.style.display='none';"></div></header><section class="introduction-container"><div class="intro-content"><div class="intro-text"><h2>ブロックでWEBコンテンツをつくろう</h2><p>このサイトでは、ブロックを組み合わせてWEBプログラミングの基礎を学習できます。診断サイトを作りながら、双方向性のあるコンテンツについて学んでいきましょう。</p></div><div class="intro-image"><div class="image-grid"><img src="about.png" alt="about.png" class="intro-main-image" onclick="openModal(this)" onerror="this.style.display='none';"> <img src="system.png" alt="system.png" class="intro-main-image" onclick="openModal(this)" onerror="this.style.display='none';"></div><div class="intro-buttons"><button class="intro-button sample-button" onclick="showSample()">サンプル</button> <button class="intro-button guide-button" onclick="showGuide()">操作説明</button></div></div></div></section><div id="imageModal" class="modal" onclick="closeModal()"><span class="close" onclick="closeModal()">&times;</span> <img class="modal-content" id="modalImage"></div><section class="chapters-title-section"><h2 class="chapters-title">Chapters</h2></section><main class="container"><nav class="roadmap-container"><ol class="chapters-roadmap"><li class="chapter-row"><button class="chapter-item" onclick="startChapter(1)"><span class="chapter-number">1</span><div class="chapter-content"><div class="chapter-subtitle">Chapter 1</div><h3 class="chapter-title">診断サイトの基本の形をつくろう</h3><p class="chapter-description">文章やボタンを追加し，診断サイトの基本の形をつくろう</p></div><div class="chapter-image"><img src="image.png" alt="Chapter 1 - 診断サイトの基本の形" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.parentElement.innerHTML='画像エリア';"></div></button> <a href="チャプター1.pdf" class="pdf-button" target="_blank"><span class="button-icon"></span> チャプターの説明</a></li><li class="chapter-row"><button class="chapter-item" onclick="startChapter(2)"><span class="chapter-number">2</span><div class="chapter-content"><div class="chapter-subtitle">Chapter 2</div><h3 class="chapter-title">回答をまとめる仕組みを作ろう</h3><p class="chapter-description">回答をまとめる仕組みを作ろう</p></div><div class="chapter-image"><img src="image2.png" alt="Chapter 2 - 回答をまとめる仕組みを作ろう" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.parentElement.innerHTML='画像エリア';"></div></button> <a href="チャプター2.pdf" class="pdf-button" target="_blank"><span class="button-icon"></span> チャプターの説明</a></li><li class="chapter-row"><button class="chapter-item" onclick="startChapter(3)"><span class="chapter-number">3</span><div class="chapter-content"><div class="chapter-subtitle">Chapter 3</div><h3 class="chapter-title">回答に応じた診断結果を表示させよう</h3><p class="chapter-description">回答に応じた診断結果を表示させよう</p></div><div class="chapter-image"><img src="image3.png" alt="Chapter 3 - 回答に応じた診断結果を表示させよう" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.parentElement.innerHTML='画像エリア';"></div></button> <a href="チャプター3.pdf" class="pdf-button" target="_blank"><span class="button-icon"></span> チャプターの説明</a></li><li class="chapter-row"><button class="chapter-item" onclick="startChapter(4)"><span class="chapter-number">4</span><div class="chapter-content"><div class="chapter-subtitle">Chapter 4</div><h3 class="chapter-title">画像を入れてみよう</h3><p class="chapter-description">画像を入れてみよう</p></div><div class="chapter-image"><img src="image4.png" alt="Chapter 3 - 回答に応じた診断結果を表示させよう" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.parentElement.innerHTML='画像エリア';"></div></button> <a href="チャプター4.pdf" class="pdf-button" target="_blank"><span class="button-icon"></span> チャプターの説明</a></li><li class="chapter-row"><button class="chapter-item" onclick="startChapter(5)"><span class="chapter-number">5</span><div class="chapter-content"><div class="chapter-subtitle">Chapter 5</div><h3 class="chapter-title">結果を集計する仕組みを作ろう</h3><p class="chapter-description">結果を集計する仕組みを作ろう</p></div><div class="chapter-image"><img src="image5.png" alt="Chapter 5 - 結果を集計する仕組みを作ろう" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.parentElement.innerHTML='画像エリア';"></div></button> <a href="チャプター5.pdf" class="pdf-button" target="_blank"><span class="button-icon"></span> チャプターの説明</a></li><li class="chapter-row"><button class="chapter-item" onclick="startChapter(6)"><span class="chapter-number">6</span><div class="chapter-content"><div class="chapter-subtitle">Chapter 6</div><h3 class="chapter-title">完成系</h3><p class="chapter-description">改造してみよう</p></div><div class="chapter-image"><img src="image6.png" alt="Chapter 6 - 完成系" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.parentElement.innerHTML='画像エリア';"></div></button> <a href="チャプター5.pdf" class="pdf-button" target="_blank"><span class="button-icon"></span> チャプターの説明</a></li><li class="chapter-row"><button class="chapter-item" onclick="startChapter(7)"><span class="chapter-number">7</span><div class="chapter-content"><div class="chapter-subtitle">Free Mode</div><h3 class="chapter-title">自由制作</h3><p class="chapter-description">自由にオリジナルの診断サイトを作ってみよう</p></div><div class="chapter-image"><img src="image7.png" alt="Chapter 7 - 自由制作" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;" onerror="this.style.display='none'; this.parentElement.innerHTML='画像エリア';"></div></button> <a href="チャプター5.pdf" class="pdf-button" target="_blank"><span class="button-icon"></span> チャプターの説明</a></li></ol></nav></main><script>// チャプターデータ（index.jsで定義されるものと同一）
+        const chapters = [
+            { id: 1, title: "診断サイトの基本の形をつくろう", description: "文章やボタンを追加し，診断サイトの基本の形をつくろう", difficulty: "beginner", progress: 0 },
+            { id: 2, title: "回答をまとめる仕組みを作ろう", description: "回答をまとめる仕組みを作ろう", difficulty: "beginner", progress: 0 },
+            { id: 3, title: "回答に応じた診断結果を表示させよう", description: "回答に応じた診断結果を表示させよう", difficulty: "beginner", progress: 0 },
+            { id: 4, title: "画像を入れてみよう", description: "画像を入れてみよう", difficulty: "intermediate", progress: 0 },
+            { id: 5, title: "結果を集計する仕組みを作ろう", description: "結果を集計する仕組みを作ろう", difficulty: "intermediate", progress: 0 },
+            { id: 6, title: "完成系", description: "改造してみよう", difficulty: "advanced", progress: 0 },
+            { id: 7, title: "自由制作", description: "自由にオリジナルの診断サイトを作ってみよう", difficulty: "advanced", progress: 0 }
+        ];
+
+        // 画像モーダル機能
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Escキーでモーダルを閉じる
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // チャプターを開始
+        function startChapter(chapterId) {
+            const chapterTitles = {
+                1: "診断サイトの基本の形をつくろう",
+                2: "回答をまとめる仕組みを作ろう", 
+                3: "回答に応じた診断結果を表示させよう",
+                4: "画像を入れてみよう",
+                5: "結果を集計する仕組みを作ろう",
+                6: "完成系（改造してみよう）",
+                7: "自由制作"
+            };
+            
+            const title = chapterTitles[chapterId] || "チャプター";
+            
+            if (confirm(`チャプター${chapterId}を開始しますか？\n\n${title}\n\nブロックプログラミング環境に移動します。`)) {
+                // 現在のワークスペース状態をダウンロード
+                downloadCurrentWorkspace();
+                
+                sessionStorage.setItem('selectedChapterId', chapterId.toString());
+                window.location.href = 'editor.html';
+            }
+        }
+
+        // 現在のワークスペース状態をJSONでダウンロードする関数
+        function downloadCurrentWorkspace() {
+            try {
+                // 現在のチャプターIDを取得
+                const currentChapterId = sessionStorage.getItem('selectedChapterId');
+                
+                if (currentChapterId) {
+                    // チャプターごとに保存されたワークスペース状態を取得
+                    const savedState = localStorage.getItem(`chapter_${currentChapterId}_blocks`);
+                    
+                    // 状態が存在する場合のみダウンロード
+                    if (savedState) {
+                        const state = JSON.parse(savedState);
+
+                        // 現在の日時を取得してフォーマット
+                        const now = new Date();
+                        const pad = (n) => n.toString().padStart(2, '0');
+                        const timestamp = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+
+                        // ファイル名にチャプター番号とタイムスタンプを付加
+                        const fileName = `chapter${currentChapterId}_workspace_${timestamp}.json`;
+
+                        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = fileName;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                        
+                        console.log(`チャプター${currentChapterId}のワークスペース状態をダウンロードしました`);
+                    } else {
+                        console.log('保存されたワークスペース状態が見つかりませんでした');
+                    }
+                }
+            } catch (error) {
+                console.error('ワークスペースのダウンロードでエラーが発生しました:', error);
+            }
+        }
+
+        // サンプル表示
+        function showSample() {
+            window.location.href = 'sample.html';
+        }
+
+        // 操作説明表示
+        function showGuide() {
+            window.open('help.html', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+        }</script></body></html>

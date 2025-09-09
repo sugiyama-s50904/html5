@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"/><title>Blockly Sample App</title><link rel="stylesheet" href="editor.css"><script defer="defer" src="bundle.js"></script></head><body><div class="left" id="leftPanel"><div class="tab-menu"><button class="tab-button active" data-tab="htmlTab">HTML</button> <button class="tab-button" data-tab="cssTab">CSS</button> <button class="tab-button" data-tab="jsTab">JS</button></div><div id="htmlTab" class="tab-content active"><div id="htmlDiv" class="blockly-div"></div></div><div id="cssTab" class="tab-content"><div id="cssDiv" class="blockly-div"></div></div><div id="jsTab" class="tab-content"><div id="jsDiv" class="blockly-div"></div></div></div><div class="resizer" id="leftResizer"></div><div class="center" id="centerPanel"><h3 style="margin: 4px 0;">コード</h3><pre id="outputArea" style="font-size:12px; padding: 4px; background:#f9f9f9; border: 1px solid #ccc; height: 240px; overflow: auto;">
+// ここにコードが表示されます</pre></div><div class="resizer" id="centerResizer"></div><div class="resizer" id="mainResizer"></div><div class="right" id="rightPanel"><div style="display: flex; gap: 10px; margin-bottom: 10px;"><div style="flex: 1;"><div class="chapter-info" id="chapterInfo" style="background: #f0f8ff; padding: 10px; border-radius: 5px; border-left: 4px solid #4f46e5; height: 70%;"><div id="chapterTitle" style="font-weight: bold; margin-bottom: 5px;">チャプターを選択してください</div><div id="chapterDescription" style="font-size: 12px; color: #666;"></div></div></div><div style="display: flex; align-items: center; gap: 10px;"><button id="algorithmButton" style="background: linear-gradient(135deg, #d4c4b0, #c7b299); 
+          color: #5d4e37; 
+          border: 2px solid #b8a082; 
+          padding: 12px 20px; 
+          border-radius: 8px; 
+          font-size: 14px; 
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: 0 3px 10px rgba(139, 105, 20, 0.15);
+          transition: all 0.3s ease;
+          text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+          white-space: nowrap;" onmouseover="this.style.background='linear-gradient(135deg, #c7b299, #b8a082)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(139, 105, 20, 0.25)'; this.style.borderColor='#a99173'" onmouseout="this.style.background='linear-gradient(135deg, #d4c4b0, #c7b299)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(139, 105, 20, 0.15)'; this.style.borderColor='#b8a082'">アルゴリズム</button> <button id="helpButton" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); 
+          color: white; 
+          border: 2px solid #4338ca; 
+          padding: 12px 20px; 
+          border-radius: 8px; 
+          font-size: 14px; 
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: 0 3px 10px rgba(79, 70, 229, 0.15);
+          transition: all 0.3s ease;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          white-space: nowrap;" onmouseover="this.style.background='linear-gradient(135deg, #3730a3, #6d28d9)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(79, 70, 229, 0.25)'; this.style.borderColor='#3730a3'" onmouseout="this.style.background='linear-gradient(135deg, #4f46e5, #7c3aed)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(79, 70, 229, 0.15)'; this.style.borderColor='#4338ca'">操作説明</button></div></div><button id="toggleCenterButton">コード表示 ON</button><iframe id="previewFrame"></iframe><div class="button-row"><button id="runButton" style="background: #10b981;">実行</button> <button id="saveButton" style="background: #10b981;">保存</button> <button id="loadButton" style="background: #10b981;">読込</button> <button id="copyButton" style="background: #10b981;">出力</button> <button id="gasLinkButton" style="background: #10b981;">画像</button> <button id="exampleButton" style="background: #8b5cf6;">基本ブロック</button> <button id="backToChaptersButton" style="background: #10b981;">チャプター選択に戻る</button> <button id="nextChapterButton" style="background: #f59e0b;">次のチャプター</button></div><input type="file" id="loadInput" style="display:none"/></div></body></html>
