@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サンプル紹介 - プログラミング</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f7f3f0 0%, #f0ebe6 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 150vh;
+        }
+
+        .header {
+            text-align: center;
+            color: #5d4e37;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(247, 243, 240, 0.8) 0%, rgba(240, 235, 230, 0.8) 100%);
+            border-bottom: 3px solid rgba(212, 196, 176, 0.3);
+            box-shadow: 0 4px 15px rgba(93, 78, 55, 0.08);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(93, 78, 55, 0.1);
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.8;
+            color: #6b5843;
+            margin: 10px 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #e8dcc6, #d4c4b0);
+            color: #5d4e37;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #c7b299;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #d4c4b0, #c7b299);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(93, 78, 55, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .samples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .sample-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(93, 78, 55, 0.15);
+            border: 2px solid rgba(212, 196, 176, 0.5);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .sample-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(93, 78, 55, 0.2);
+            border-color: rgba(199, 178, 153, 0.8);
+        }
+
+        .sample-title {
+            font-size: 1.8em;
+            color: #5d4e37;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .sample-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e8dcc6, #d4c4b0);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9d8a6f;
+            font-size: 1.1em;
+            border: 2px dashed rgba(93, 78, 55, 0.3);
+            overflow: hidden;
+        }
+
+        .sample-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .pdf-button, .site-button {
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            text-decoration: none;
+            width: 200px;
+            justify-content: center;
+        }
+
+        .pdf-button {
+            background: linear-gradient(135deg, #5d4e37, #4a3a28);
+            color: white;
+        }
+
+        .pdf-button:hover {
+            background: linear-gradient(135deg, #4a3a28, #3d2f1f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(93, 78, 55, 0.3);
+        }
+
+        .site-button {
+            background: linear-gradient(135deg, #1976d2, #1565c0);
+            color: white;
+        }
+
+        .site-button:hover {
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(25, 118, 210, 0.3);
+        }
+
+        .button-icon {
+            font-size: 1.2em;
+        }
+
+        .sample-description {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 196, 176, 0.3);
+            color: #6b5843;
+            font-size: 0.9em;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            .samples-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sample-card {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .sample-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>サンプル紹介</h1>
+        <p>実際に作成できるコンテンツのサンプルをご覧いただけます</p>
+        <a href="index.html" class="back-button">← トップに戻る</a>
+    </header>
+
+    <div class="container">
+        <div class="samples-grid">
+            <div class="sample-card">
+                <h2 class="sample-title">おでかけNavi</h2>
+                <div class="sample-thumbnail">
+                    <img src="sample1.png" alt="おでかけNavi" onerror="this.style.display='none'; this.parentElement.innerHTML='サンプル画像';">
+                </div>
+                <div class="button-group">
+                    <a href="https://sites.google.com/view/odekakenavi/ホーム?authuser=2" class="site-button" target="_blank">
+                        <span class="button-icon"></span>
+                        サイトを見る
+                    </a>
+                    <a href="ワークシートおでかけ.pdf" class="pdf-button" target="_blank">
+                        <span class="button-icon"></span>
+                        仕組みを見る
+                    </a>
+                </div>
+                <div class="sample-description">
+                    おでかけ先を選択肢から選んで、あなたにぴったりのお出かけプランを提案する診断サイトです。複数の質問に答えることで、最適なおでかけ先が診断されます。
+                </div>
+            </div>
+
+            <div class="sample-card">
+                <h2 class="sample-title">パーソナルカラー診断</h2>
+                <div class="sample-thumbnail">
+                    <img src="sample2.png" alt="パーソナルカラー診断" onerror="this.style.display='none'; this.parentElement.innerHTML='サンプル画像';">
+                </div>
+                <div class="button-group">
+                    <a href="https://sites.google.com/view/personalcolorsindan/ホーム?authuser=2" class="site-button" target="_blank">
+                        <span class="button-icon"></span>
+                        サイトを見る
+                    </a>
+                    <a href="ワークシートパーソナルカラー.pdf" class="pdf-button" target="_blank">
+                        <span class="button-icon"></span>
+                        仕組みを見る 
+                    </a>
+                </div>
+                <div class="sample-description">
+                    あなたに似合う色を診断するパーソナルカラー診断サイトです。肌の色や髪の色に関する質問に答えることで、あなたに最適な色のタイプが分かります。
+                </div>
+            </div>
+
+            <div class="sample-card">
+                <h2 class="sample-title">推しみつけ</h2>
+                <div class="sample-thumbnail">
+                    <img src="sample3.png" alt="Oshi search" onerror="this.style.display='none'; this.parentElement.innerHTML='サンプル画像';">
+                </div>
+                <div class="button-group">
+                    <a href="https://sites.google.com/view/oshinavi/ホーム?authuser=2" class="site-button" target="_blank">
+                        <span class="button-icon"></span>
+                        サイトを見る
+                    </a>
+                     <a href="ワークシート推し活.pdf" class="pdf-button" target="_blank">
+                        <span class="button-icon"></span>
+                        仕組みを見る 
+                    </a>
+                </div>
+                <div class="sample-description">
+                    あなたの好みに合った推しアイドルを見つける診断サイトです。趣向に関する質問から、あなたにぴったりの推しを提案します。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPDF(type) {
+            const pdfFiles = {
+                'personality': 'personality_mechanism.pdf',
+                'career': 'career_mechanism.pdf',
+                'learning': 'learning_mechanism.pdf'
+            };
+            
+            const pdfFile = pdfFiles[type];
+            if (pdfFile) {
+                // PDFファイルをブラウザで表示
+                window.open(pdfFile, '_blank');
+            } else {
+                alert('PDFファイルが見つかりません。');
+            }
+        }
+    </script>
+</body>
+</html>

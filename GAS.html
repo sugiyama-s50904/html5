@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>GASコード自動生成ツール</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    textarea {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    #copy-button {
+      float: right;
+      background-color: #2196f3;
+    }
+
+    #copy-button:hover {
+      background-color: #0b7dda;
+    }
+
+    .button-row {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <h2>GASコード自動生成</h2>
+
+  <label for="sheetUrl">① スプレッドシートのURL</label>
+  <input type="text" id="sheetUrl" placeholder="https://docs.google.com/spreadsheets/d/xxxxxxxxxxxxxxxxxxxxxx/edit#gid=0">
+
+  <label for="sheetName">② シート名（例: シート1）</label>
+　<input type="text" id="sheetName" value="シート1" placeholder="シート名を入力">
+
+  <div class="button-row">
+    <button id="generate">コード生成</button>
+  </div>
+
+  <label for="output">③ 生成されたGASコード</label>
+  <textarea id="output" readonly></textarea>
+
+  <div class="button-row">
+    <button id="copy-button">コピー</button>
+  </div>
+
+  <script>
+    document.getElementById('generate').addEventListener('click', () => {
+      const url = document.getElementById('sheetUrl').value.trim();
+      const sheetName = document.getElementById('sheetName').value.trim() || 'シート名を入力';
+
+      const match = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+      if (!match) {
+        alert("スプレッドシートのURLが正しくありません");
+        return;
+      }
+
+      const SPREADSHEET_ID = match[1];
+
+      const code = `const SPREADSHEET_ID = '${SPREADSHEET_ID}';
+const SHEET_NAME = '${sheetName}';  
+
+function doGet(e) {
+  const colIndex = Number(e.parameter.column || 2);  // 例: column=2 → B列
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  const data = sheet.getDataRange().getValues();
+  const values = data.slice(1).map(row => row[colIndex - 1]); // ヘッダー除く
+  return ContentService.createTextOutput(JSON.stringify(values)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  sheet.appendRow([
+    new Date(),
+    e.parameter.columnB || "",
+    e.parameter.columnC || "",
+    e.parameter.columnD || "",
+    e.parameter.columnE || "",
+    e.parameter.columnF || "",
+    e.parameter.columnG || "",
+    e.parameter.columnH || "",
+    e.parameter.columnI || "",
+    e.parameter.columnJ || ""
+  ]);
+  return ContentService.createTextOutput("ok");
+}`;
+
+      document.getElementById('output').value = code;
+    });
+
+    document.getElementById('copy-button').addEventListener('click', () => {
+      const textarea = document.getElementById('output');
+      textarea.select();
+      document.execCommand('copy');
+      alert('コードをコピーしました！');
+    });
+  </script>
+</body>
+</html>
